@@ -15,4 +15,4 @@ for file in $files; do
 done
 
 # Tùy chọn: Tự động push sau khi commit xong tất cả
-# git push
+git push

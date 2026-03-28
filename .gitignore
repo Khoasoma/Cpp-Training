@@ -1,3 +1,8 @@
 *.exe
 *vscode/
 .vscode/tasks.json
+
+.git
+README.md
+ss.sh
+

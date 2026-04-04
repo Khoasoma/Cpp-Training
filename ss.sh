@@ -8,7 +8,8 @@ if [ -z "$files" ]; then
     exit 0
 fi
 
-for file in $files; do
+# Dùng 'while read' để đọc nguyên vẹn từng dòng (bỏ qua khoảng trắng)
+echo "$files" | while IFS= read -r file; do
     echo "Đang commit: $file"
     git add "$file"
     git commit -m "Hoàn thành bài tập: $file"

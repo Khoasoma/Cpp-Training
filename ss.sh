@@ -14,7 +14,7 @@ echo "$files" | while IFS= read -r file; do
     git add "$file"
     
     # Kiểm tra xem đường dẫn file có bắt đầu hoặc chứa "Homework/" không
-    if [[ "$file" == *"Homework/"* ]]; then
+    if [[ "$file" == *"Problem/"* ]]; then
         # Nếu nằm trong thư mục Homework
         git commit -m "upload bài tập: $file"
     else

@@ -1,0 +1,25 @@
+name: C/C++ CI Build Check
+
+# Workflow này sẽ chạy mỗi khi bạn git push
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Chạy trên máy ảo Linux của GitHub
+
+    steps:
+    - name: Tải code từ kho về máy ảo
+      uses: actions/checkout@v3
+
+    - name: Cài đặt trình biên dịch g++
+      run: sudo apt-get install -y g++
+
+    - name: Thử biên dịch toàn bộ file .cpp
+      # Tìm tất cả file .cpp và kiểm tra cú pháp
+      run: |
+        for file in $(find . -name "*.cpp"); do
+          echo "Đang build $file"
+          g++ -fsyntax-only "$file" -Wall || exit 1
+        done

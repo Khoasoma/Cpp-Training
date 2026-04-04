@@ -1,41 +1,32 @@
-#!/bin/bash
+name: C/C++ CI Build Check
 
-# Kiểm tra nhanh xem có file nào cần commit không
-if [ -z "$(git ls-files --modified --others --exclude-standard)" ]; then
-    echo "Không có thay đổi nào để commit."
-    exit 0
-fi
+# Workflow này sẽ chạy mỗi khi bạn git push lên nhánh main
+on:
+  push:
+    branches: [ "main" ]
 
-# Đọc an toàn mọi tên file
-while IFS= read -r -d $'\0' file; do
-    
-    # BƯỚC TEST BUILD: 
-    # Chỉ test NẾU là file .cpp VÀ NẾU đường dẫn có chứa "Homework/"
-    if [[ "$file" == *.cpp && "$file" == *"Homework/"* ]]; then
-        echo "Đang test build bài tập: $file..."
-        g++ -fsyntax-only "$file" 2>/dev/null
-        
-        if [ $? -ne 0 ]; then
-            echo "❌ LỖI BIÊN DỊCH: $file -> Bỏ qua, không commit file này!"
-            echo "---------------------------------"
-            continue # Bỏ qua, nhảy sang file tiếp theo
+jobs:
+  build:
+    runs-on: ubuntu-latest # Chạy trên máy ảo Linux của GitHub
+
+    steps:
+    - name: Tải code từ kho về máy ảo
+      uses: actions/checkout@v3
+
+    - name: Cài đặt trình biên dịch g++
+      run: sudo apt-get install -y g++
+
+    - name: Kiểm tra biên dịch các file trong thư mục Homework
+      run: |
+        # Kiểm tra xem thư mục Homework có tồn tại trên kho không
+        if [ -d "Homework" ]; then
+          # Tìm tất cả file .cpp TRONG THƯ MỤC Homework và các thư mục con
+          for file in $(find Homework -name "*.cpp"); do
+            echo "Đang test build: $file"
+            # Cờ -fsyntax-only để test lỗi, -Wall để cảnh báo code bẩn, || exit 1 để đánh rớt workflow nếu có lỗi
+            g++ -fsyntax-only "$file" -Wall || exit 1
+          done
+          echo "✅ Tất cả các bài tập đều build thành công!"
+        else
+          echo "Thư mục Homework trống hoặc chưa tồn tại, bỏ qua bước test."
         fi
-        echo "✅ Build OK!"
-    fi
-
-    # Tiến hành commit cho file hợp lệ (hoặc file không cần test)
-    echo "Đang commit: $file"
-    git add "$file"
-    
-    # Phân loại tin nhắn commit
-    if [[ "$file" == *"Homework/"* ]]; then
-        git commit -m "upload bài tập: $file"
-    else
-        git commit -m "Hoàn thành: $file"
-    fi
-    
-    echo "---------------------------------"
-done < <(git ls-files -z --modified --others --exclude-standard)
-
-# Tự động đẩy code lên mạng
-git push

@@ -6,20 +6,36 @@ if [ -z "$(git ls-files --modified --others --exclude-standard)" ]; then
     exit 0
 fi
 
-# Dùng 'git ls-files -z' và 'read -d $'\0'' để đọc an toàn tuyệt đối mọi tên file
+# Đọc an toàn mọi tên file
 while IFS= read -r -d $'\0' file; do
+    
+    # BƯỚC TEST BUILD: 
+    # Chỉ test NẾU là file .cpp VÀ NẾU đường dẫn có chứa "Homework/"
+    if [[ "$file" == *.cpp && "$file" == *"Homework/"* ]]; then
+        echo "Đang test build bài tập: $file..."
+        g++ -fsyntax-only "$file" 2>/dev/null
+        
+        if [ $? -ne 0 ]; then
+            echo "❌ LỖI BIÊN DỊCH: $file -> Bỏ qua, không commit file này!"
+            echo "---------------------------------"
+            continue # Bỏ qua, nhảy sang file tiếp theo
+        fi
+        echo "✅ Build OK!"
+    fi
+
+    # Tiến hành commit cho file hợp lệ (hoặc file không cần test)
     echo "Đang commit: $file"
     git add "$file"
     
-    # Kiểm tra xem đường dẫn file có bắt đầu hoặc chứa "Homework/" không
+    # Phân loại tin nhắn commit
     if [[ "$file" == *"Homework/"* ]]; then
-        # Nếu nằm trong thư mục Homework
         git commit -m "upload bài tập: $file"
     else
-        # Nếu là các file ở thư mục khác
         git commit -m "Hoàn thành: $file"
     fi
+    
+    echo "---------------------------------"
 done < <(git ls-files -z --modified --others --exclude-standard)
 
-# Tùy chọn: Tự động push sau khi commit xong tất cả
+# Tự động đẩy code lên mạng
 git push

@@ -1,32 +1,35 @@
 name: C/C++ CI Build Check
 
-# Workflow này sẽ chạy mỗi khi bạn git push lên nhánh main
 on:
   push:
     branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Chạy trên máy ảo Linux của GitHub
+    runs-on: ubuntu-latest
 
     steps:
     - name: Tải code từ kho về máy ảo
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Bắt buộc phải có dòng này để bot lấy lịch sử Git về so sánh
 
     - name: Cài đặt trình biên dịch g++
       run: sudo apt-get install -y g++
 
-    - name: Kiểm tra biên dịch các file trong thư mục Homework
+    - name: Tìm các file C++ bị thay đổi trong Homework
+      id: changed-files
+      uses: tj-actions/changed-files@v42
+      with:
+        files: |
+          Homework/**/*.cpp
+
+    - name: Thử biên dịch (Chỉ chạy khi có file thay đổi)
+      if: steps.changed-files.outputs.any_changed == 'true'
       run: |
-        # Kiểm tra xem thư mục Homework có tồn tại trên kho không
-        if [ -d "Homework" ]; then
-          # Tìm tất cả file .cpp TRONG THƯ MỤC Homework và các thư mục con
-          for file in $(find Homework -name "*.cpp"); do
-            echo "Đang test build: $file"
-            # Cờ -fsyntax-only để test lỗi, -Wall để cảnh báo code bẩn, || exit 1 để đánh rớt workflow nếu có lỗi
-            g++ -fsyntax-only "$file" -Wall || exit 1
-          done
-          echo "✅ Tất cả các bài tập đều build thành công!"
-        else
-          echo "Thư mục Homework trống hoặc chưa tồn tại, bỏ qua bước test."
-        fi
+        # Vòng lặp này chỉ chạy qua những file bạn vừa push lên
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo "Đang test build: $file"
+          g++ -fsyntax-only "$file" -Wall || exit 1
+        done
+        echo "✅ Các bài tập mới push đều build ngon lành!"

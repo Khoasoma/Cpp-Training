@@ -31,7 +31,7 @@ int main() {
     for(int d : digit) q.push_back(d);
 
     int head = 0;
-	while (head < q.size()){
+	while (head < (int)q.size()){
 		ll v = q[head++];
 		if (v > b) continue;
 

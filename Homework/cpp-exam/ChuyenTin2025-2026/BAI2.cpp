@@ -21,7 +21,7 @@ bool sumdigitprime(ll n){
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(NULL);	
     ll a,b;
     cin >> a >> b;
     vector<ll> res;

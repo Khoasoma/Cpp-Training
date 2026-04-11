@@ -17,7 +17,7 @@ int main() {
     while(n--){
     	int di; cin >> di;
 
-    	if (pos >= di){ pos = p + di;
+    	if (pos >= di){ pos = di;
     	so_lan_sac++;
     }    	
     if(pos >= d){

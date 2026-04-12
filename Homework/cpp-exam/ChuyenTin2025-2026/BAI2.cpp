@@ -22,6 +22,7 @@ bool sumdigitprime(ll n){
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cin.tie(NULL);	
     ll a,b;
     cin >> a >> b;
     vector<ll> res;
@@ -31,7 +32,7 @@ int main() {
     for(int d : digit) q.push_back(d);
 
     int head = 0;
-	while (head < q.size()){
+	while (head < (int)q.size()){
 		ll v = q[head++];
 		if (v > b) continue;
 

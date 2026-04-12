@@ -1,0 +1,35 @@
+name: C/C++ CI Build Check
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Tải code từ kho về máy ảo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Bắt buộc phải có dòng này để bot lấy lịch sử Git về so sánh
+
+    - name: Cài đặt trình biên dịch g++
+      run: sudo apt-get install -y g++
+
+    - name: Tìm các file C++ bị thay đổi trong Homework
+      id: changed-files
+      uses: tj-actions/changed-files@v42
+      with:
+        files: |
+          Homework/**/*.cpp
+
+    - name: Thử biên dịch (Chỉ chạy khi có file thay đổi)
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        # Vòng lặp này chỉ chạy qua những file bạn vừa push lên
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo "Đang test build: $file"
+          g++ -fsyntax-only "$file" -Wall || exit 1
+        done
+        echo "✅ Các bài tập mới push đều build ngon lành!"

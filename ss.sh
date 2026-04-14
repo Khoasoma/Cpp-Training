@@ -1,11 +1,24 @@
 #!/bin/bash
 
+# Lấy danh sách các file thay đổi và file mới
+files=$(git ls-files --modified --others --exclude-standard)
+
+if [ -z "$files" ]; then
+
 # Kiểm tra nhanh xem có file nào cần commit không
 if [ -z "$(git ls-files --modified --others --exclude-standard)" ]; then
     echo "Không có thay đổi nào để commit."
     exit 0
 fi
 
+<<<<<<< HEAD
+for file in $files; do
+    echo "Đang commit: $file"
+    git add "$file"
+    git commit -m "Hoàn thành bài tập: $file"
+done
+
+# Tùy chọn: Tự động push sau khi commit xong tất cả
 # Đọc an toàn mọi tên file
 while IFS= read -r -d $'\0' file; do
     

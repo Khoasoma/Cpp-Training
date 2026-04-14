@@ -1,8 +1,11 @@
 *.exe
 *vscode/
 .vscode/tasks.json
+<<<<<<< HEAD
+=======
 
 .git
 README.md
 ss.sh
+
 

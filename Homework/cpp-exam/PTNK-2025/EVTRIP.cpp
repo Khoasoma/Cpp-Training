@@ -9,24 +9,30 @@ void solve() {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    freopen("EVTRIP.INP","r",stdin);
+    freopen("EVTRIP.OUT","w",stdout);
    	long long n, p, d;
     cin >> n >> p >> d;
     int so_lan_sac = 0;
-    bool du_pin = false;
+    bool pin = p;
     int pos = p;
-    while(n--){
-    	int di; cin >> di;
+    vector<long long> di(n);
+    for(long long &x : di) cin >> x;
 
-    	if (pos >= di){ pos = di;
-    	so_lan_sac++;
-    }    	
-    if(pos >= d){
-    		du_pin = true;
-    	 break;
+    for(int i = 0; i < di.size();i++){
+        long long khoangcach = di[i] - pos;
+
+        if (khoangcach > p){
+            cout << "-1";
+            return 0;
+        }
+        if(pin < khoangcach){
+            pin = p;
+            so_lan_sac++;
+        }
+        pin -= khoangcach;
+        pos = di[i];
     }
-}
-    if(du_pin){
-    	cout << so_lan_sac;
-    } else cout << "-1";
+    cout << so_lan_sac;
     return 0;
 }

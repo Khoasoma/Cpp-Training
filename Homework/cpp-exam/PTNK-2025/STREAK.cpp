@@ -5,6 +5,8 @@ using namespace std;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    freopen("STREAK.INP","r",stdin);
+    freopen("STREAK.OUT","w",stdout);
     int n; cin >> n;
     string s;
     int streak = 0;

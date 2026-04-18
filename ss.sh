@@ -1,25 +1,12 @@
 #!/bin/bash
 
-# Lấy danh sách các file thay đổi và file mới
-files=$(git ls-files --modified --others --exclude-standard)
-
-if [ -z "$files" ]; then
-
-# Kiểm tra nhanh xem có file nào cần commit không
+# Kiểm tra nhanh xem có file nào thay đổi hoặc file mới không
 if [ -z "$(git ls-files --modified --others --exclude-standard)" ]; then
     echo "Không có thay đổi nào để commit."
     exit 0
 fi
 
-<<<<<<< HEAD
-for file in $files; do
-    echo "Đang commit: $file"
-    git add "$file"
-    git commit -m "Hoàn thành bài tập: $file"
-done
-
-# Tùy chọn: Tự động push sau khi commit xong tất cả
-# Đọc an toàn mọi tên file
+# Đọc an toàn mọi tên file (bao gồm cả file có dấu cách)
 while IFS= read -r -d $'\0' file; do
     
     # BƯỚC TEST BUILD: 
@@ -36,8 +23,8 @@ while IFS= read -r -d $'\0' file; do
         echo "✅ Build OK!"
     fi
 
-    # Tiến hành commit cho file hợp lệ (hoặc file không cần test)
-    echo "Đang commit: $file"
+    # Tiến hành commit cho file hợp lệ (hoặc file không nằm trong diện cần test)
+    echo "Đang chuẩn bị commit: $file"
     git add "$file"
     
     # Phân loại tin nhắn commit
@@ -51,4 +38,5 @@ while IFS= read -r -d $'\0' file; do
 done < <(git ls-files -z --modified --others --exclude-standard)
 
 # Tự động đẩy code lên mạng
+echo "Đang đẩy code lên remote (git push)..."
 git push

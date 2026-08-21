@@ -1,0 +1,372 @@
+---- Minecraft Crash Report ----
+// Oh - I know what I did wrong!
+
+Time: 2026-07-22 20:23:30
+Description: Unexpected error
+
+java.lang.RuntimeException: Exception thrown while executing job
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.executor.ChunkJobResult.unwrap(ChunkJobResult.java:27)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.RenderSectionManager.collectChunkBuildResults(RenderSectionManager.java:385)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.RenderSectionManager.uploadChunks(RenderSectionManager.java:296)
+	at knot//net.caffeinemc.mods.sodium.client.render.SodiumWorldRenderer.setupTerrain(SodiumWorldRenderer.java:237)
+	at knot//net.minecraft.class_761.method_3273(class_761.java:15785)
+	at knot//net.minecraft.class_761.method_22710(class_761.java:983)
+	at knot//net.minecraft.class_757.method_3188(class_757.java:1087)
+	at knot//net.minecraft.class_757.method_3192(class_757.java:850)
+	at knot//net.minecraft.class_310.method_1523(class_310.java:1285)
+	at knot//net.minecraft.class_310.method_1514(class_310.java:882)
+	at knot//net.minecraft.client.main.Main.main(Main.java:256)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+Caused by: java.lang.NoSuchMethodError: 'net.caffeinemc.mods.sodium.client.gui.SodiumOptions net.caffeinemc.mods.sodium.client.SodiumClientMod.options()'
+	at knot//ca.fxco.moreculling.utils.CullingUtils.areLeavesOpaque(CullingUtils.java:93)
+	at knot//net.minecraft.class_2397.method_9522(class_2397.java:1038)
+	at knot//net.minecraft.class_4970$class_4971.method_26187(class_4970.java:1050)
+	at knot//ca.fxco.moreculling.utils.CullingUtils.shouldDrawSideCulling(CullingUtils.java:37)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.BlockOcclusionCache.handler$egg000$moreculling$useMoreCulling(BlockOcclusionCache.java:541)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.BlockOcclusionCache.shouldDrawSide(BlockOcclusionCache.java:44)
+	at knot//net.caffeinemc.mods.sodium.client.render.frapi.render.AbstractBlockRenderContext.isFaceCulled(AbstractBlockRenderContext.java:145)
+	at knot//me.pepperbell.continuity.client.model.EmissiveBakedModel$EmissiveBlockQuadTransform.transform(EmissiveBakedModel.java:136)
+	at knot//net.caffeinemc.mods.sodium.client.render.frapi.render.AbstractRenderContext.transform(AbstractRenderContext.java:47)
+	at knot//net.caffeinemc.mods.sodium.client.render.frapi.render.AbstractBlockRenderContext.renderQuad(AbstractBlockRenderContext.java:172)
+	at knot//net.caffeinemc.mods.sodium.client.render.frapi.render.AbstractBlockRenderContext.bufferDefaultModel(AbstractBlockRenderContext.java:256)
+	at knot//net.minecraft.class_1087.emitBlockQuads(class_1087.java:1521)
+	at knot//net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel.emitBlockQuads(ForwardingBakedModel.java:58)
+	at knot//me.pepperbell.continuity.client.model.EmissiveBakedModel.emitBlockQuads(EmissiveBakedModel.java:64)
+	at knot//net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel.emitBlockQuads(ForwardingBakedModel.java:58)
+	at knot//me.pepperbell.continuity.client.model.EmissiveBakedModel.emitBlockQuads(EmissiveBakedModel.java:72)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.BlockRenderer.renderModel(BlockRenderer.java:119)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.tasks.ChunkBuilderMeshingTask.execute(ChunkBuilderMeshingTask.java:112)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.tasks.ChunkBuilderMeshingTask.execute(ChunkBuilderMeshingTask.java:50)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.executor.ChunkJobTyped.execute(ChunkJobTyped.java:45)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.executor.ChunkBuilder$WorkerRunnable.run(ChunkBuilder.java:213)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.compile.executor.ChunkJobResult.unwrap(ChunkJobResult.java:27)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.RenderSectionManager.collectChunkBuildResults(RenderSectionManager.java:385)
+	at knot//net.caffeinemc.mods.sodium.client.render.chunk.RenderSectionManager.uploadChunks(RenderSectionManager.java:296)
+	at knot//net.caffeinemc.mods.sodium.client.render.SodiumWorldRenderer.setupTerrain(SodiumWorldRenderer.java:237)
+	at knot//net.minecraft.class_761.method_3273(class_761.java:15785)
+	at knot//net.minecraft.class_761.method_22710(class_761.java:983)
+	at knot//net.minecraft.class_757.method_3188(class_757.java:1087)
+
+-- Uptime --
+Details:
+	JVM uptime: 1829.077s
+	Wall uptime: 1762.812s
+	High-res time: 1722.178s
+	Client ticks: 32592 ticks / 1629.600s
+Stacktrace:
+	at knot//net.minecraft.class_310.method_1587(class_310.java:2501)
+	at knot//net.minecraft.class_310.method_54580(class_310.java:949)
+	at knot//net.minecraft.class_310.method_1514(class_310.java:905)
+	at knot//net.minecraft.client.main.Main.main(Main.java:256)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+
+-- Affected level --
+Details:
+	All players: 1 total; [class_746['huydarking'/12, l='ClientLevel', x=-2.50, y=108.00, z=-196.50]]
+	Chunk stats: 729, 181
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (0,103,-192), Section: (at 0,7,0 in 0,6,-12; chunk contains blocks 0,-64,-192 to 15,319,-177), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,-64,-512 to 511,319,-1)
+	Level time: 73721 game time, 73721 day time
+	Server brand: fabric
+	Server type: Non-integrated multiplayer server
+	Tracked entity count: 121
+
+-- Last reload --
+Details:
+	Reload number: 2
+	Reload reason: manual
+	Finished: Yes
+	Packs: vanilla, fabric, alternate-current, ambientsounds, apollib, balm, bclib, bettercombat, betterfortresses, betterstrongholds, bosses_of_mass_destruction, cardinal-components, cardinal-components-base, cardinal-components-block, cardinal-components-chunk, cardinal-components-entity, cardinal-components-item, cardinal-components-level, cardinal-components-scoreboard, cardinal-components-world, cloth-config, cobbled_counter, cobbledex, cobblemon, cobblemon_quests-reloaded, cobblemonbreakouts, cobblemonextrastructures, cobblemontrainerbattle, cobbreeding, comforts, conditional-mixin, continuity, creativecore, ctov, dynamic_fps, effective, emi, entityculling, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-view-api-v2, fabric-blockrenderlayer-v1, fabric-client-tags-api-v1, fabric-command-api-v1, fabric-command-api-v2, fabric-commands-v0, fabric-content-registries-v0, fabric-convention-tags-v1, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-item-api-v1, fabric-item-group-api-v1, fabric-key-binding-api-v1, fabric-keybindings-v0, fabric-language-kotlin, fabric-lifecycle-events-v1, fabric-loot-api-v2, fabric-loot-api-v3, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-renderer-registries-v1, fabric-rendering-data-attachment-v1, fabric-rendering-fluids-v1, fabric-rendering-v0, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-screen-api-v1, fabric-screen-handler-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, fastquit, ftblibrary, ftbquests, ftbteams, fzzy_config, immediatelyfast, inventoryprofilesnext, iris, jade, krypton, libipn, lithium, lootr, map_atlases, midnightlib, modernfix, moonlight, moreculling, mr_dungeons_andtaverns, naturescompass, noisium, playeranimator, presencefootsteps, repurposed_structures, roughlyenoughitems, satin, simplyswords, simplytooltips, sodium, sound_physics_remastered, spark, spectrelib, team_reborn_energy, tectonic, terrablender, terralith, tiered, tim_core, travelersbackpack, trender, unionlib, veil, waystones, wover, wover-block, wover-core, wover-events, wover-generator, wover-preset, wover-surface, wover-ui, wunderlib, cobbreeding:pasturefix, moonlight:merged_pack
+
+-- Cobblemon --
+Details:
+	Version: 1.7.3
+	Is Snapshot: false
+	Git Commit: 37264af (https://gitlab.com/cable-mc/cobblemon/-/commit/37264aff0f6c90c9f9a79bbdfc712bd11929a38c)
+	Branch: HEAD
+
+-- System Details --
+Details:
+	Minecraft Version: 1.21.1
+	Minecraft Version ID: 1.21.1
+	Operating System: Linux (amd64) version 7.0.0-28-generic
+	Java Version: 21.0.7, Microsoft
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Microsoft
+	Memory: 1919188432 bytes (1830 MiB) / 3204448256 bytes (3056 MiB) up to 4294967296 bytes (4096 MiB)
+	CPUs: 4
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Core(TM) i7-7600U CPU @ 2.80GHz
+	Identifier: Intel64 Family 6 Model 142 Stepping 9
+	Microarchitecture: Amber Lake
+	Frequency (GHz): 2.80
+	Number of physical packages: 1
+	Number of physical CPUs: 2
+	Number of logical CPUs: 4
+	Graphics card #0 name: Kaby Lake-U GT2 [HD Graphics 620]
+	Graphics card #0 vendor: Intel Corporation (0x8086)
+	Graphics card #0 VRAM (MiB): 256.00
+	Graphics card #0 deviceId: 0x5916
+	Graphics card #0 versionInfo: unknown
+	Virtual memory max (MiB): 10381.86
+	Virtual memory used (MiB): 9546.16
+	Swap memory total (MiB): 512.00
+	Swap memory used (MiB): 0.01
+	Space in storage for jna.tmpdir (MiB): available: 185687.73, total: 238983.59
+	Space in storage for org.lwjgl.system.SharedLibraryExtractPath (MiB): available: 185687.73, total: 238983.59
+	Space in storage for io.netty.native.workdir (MiB): available: 185687.73, total: 238983.59
+	Space in storage for java.io.tmpdir (MiB): available: 9713.05, total: 9869.86
+	Space in storage for workdir (MiB): available: 185687.73, total: 238983.59
+	JVM Flags: 21 total; -Xms2048M -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=50 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:+UseStringDeduplication -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -Xmx4096M -Xss2M
+	Fabric Mods: 
+		alternate-current: Alternate Current 1.9.0
+		ambientsounds: AmbientSounds 6.3.8
+		architectury: Architectury 13.0.8
+		balm: Balm 21.0.63
+			kuma_api: KumaAPI 21.0.8
+		bclib: BCLib 21.0.13
+		bettercombat: Better Combat 2.4.0+1.21.1
+			tiny_config: Tiny Config 3.1.0
+		betterfortresses: YUNG's Better Nether Fortresses 1.21.1-Fabric-3.1.5
+			org_reflections_reflections: reflections 0.10.2
+		betterstrongholds: YUNG's Better Strongholds 1.21.1-Fabric-5.1.3
+		bosses_of_mass_destruction: Bosses of Mass Destruction (Beta) 1.10.2-1.21.1
+			multipart_entities: MultipartEntities 1.7-1.21
+		cardinal-components: Cardinal Components API 6.1.3
+			cardinal-components-base: Cardinal Components API (base) 6.1.3
+			cardinal-components-block: Cardinal Components API (blocks) 6.1.3
+			cardinal-components-chunk: Cardinal Components API (chunks) 6.1.3
+			cardinal-components-entity: Cardinal Components API (entities) 6.1.3
+			cardinal-components-item: Cardinal Components API (items) 6.1.3
+			cardinal-components-level: Cardinal Components API (world saves) 6.1.3
+			cardinal-components-scoreboard: Cardinal Components API (scoreboard) 6.1.3
+			cardinal-components-world: Cardinal Components API (worlds) 6.1.3
+		clumps: Clumps 19.0.0.1
+		cobbled_counter: Counter 1.7.3-fabric-1.9.0
+		cobbledex: Cobbledex 1.2.0
+		cobblemon: Cobblemon 1.7.3+1.21.1
+		cobblemon_quests-reloaded: cobblemon_quests-reloaded 1.3.5
+		cobblemonbreakouts: Cobblemon Outbreaks 1.0.0-1.21.1-fabric
+		cobblemonextrastructures: Cobblemon Extra Structures 1.3.0
+		cobblemontrainerbattle: Cobblemon Trainer Battle 1.11.12+1.7.3
+		cobbreeding: Cobbreeding 2.2.2
+		comforts: Comforts 9.0.5+1.21.1
+			spectrelib: SpectreLib 0.17.2+1.21
+				com_electronwill_night-config_core: core 3.8.0
+				com_electronwill_night-config_toml: toml 3.8.0
+		continuity: Continuity 3.0.0+1.21
+		creativecore: CreativeCore 2.13.39
+			net_neoforged_bus: bus 7.2.0
+		ctov: ChoiceTheorem's Overhauled Village 3.6.3
+			cloth-config: Cloth Config v15 15.0.140
+				cloth-basic-math: cloth-basic-math 0.6.1
+		dynamic_fps: Dynamic FPS 3.11.4
+			net_lostluma_battery: battery 2.0.0
+		effective: Effective 2.4.8-1.21.1
+			satin: Satin 2.0.0
+			veil: Veil 1.0.0.85
+				gg_moonflower_molang-compiler: molang-compiler 3.1.1.19
+				io_github_spair_imgui-java-binding: imgui-java-binding 1.86.11
+				io_github_spair_imgui-java-lwjgl3: imgui-java-lwjgl3 1.86.11
+				io_github_spair_imgui-java-natives-linux: imgui-java-natives-linux 1.86.11
+				io_github_spair_imgui-java-natives-macos-ft: imgui-java-natives-macos-ft 1.86.11
+				io_github_spair_imgui-java-natives-windows: imgui-java-natives-windows 1.86.11
+				org_lwjgl_lwjgl-opencl: lwjgl-opencl 3.3.3
+				org_lwjgl_lwjgl-shaderc: lwjgl-shaderc 3.3.3
+				org_lwjgl_lwjgl-shaderc_natives-linux: lwjgl-shaderc 3.3.3
+				org_lwjgl_lwjgl-shaderc_natives-linux-arm64: lwjgl-shaderc 3.3.3
+				org_lwjgl_lwjgl-shaderc_natives-macos: lwjgl-shaderc 3.3.3
+				org_lwjgl_lwjgl-shaderc_natives-macos-arm64: lwjgl-shaderc 3.3.3
+				org_lwjgl_lwjgl-shaderc_natives-windows: lwjgl-shaderc 3.3.3
+				org_lwjgl_lwjgl-shaderc_natives-windows-arm64: lwjgl-shaderc 3.3.3
+		emi: EMI 1.1.24+1.21.1+fabric
+		entityculling: EntityCulling 1.10.5
+			transition: TRansition 1.0.21
+			trender: TRender 1.0.15
+		explorify: Explorify 1.6.5
+		fabric-api: Fabric API 0.116.14+1.21.1
+			fabric-api-base: Fabric API Base 0.4.42+6573ed8c19
+			fabric-api-lookup-api-v1: Fabric API Lookup API (v1) 1.6.72+7b3d111d19
+			fabric-biome-api-v1: Fabric Biome API (v1) 13.0.31+d527f9fd19
+			fabric-block-api-v1: Fabric Block API (v1) 1.1.0+0bc3503219
+			fabric-block-view-api-v2: Fabric BlockView API (v2) 1.0.11+ebb2264e19
+			fabric-blockrenderlayer-v1: Fabric BlockRenderLayer Registration (v1) 1.1.52+0af3f5a719
+			fabric-client-tags-api-v1: Fabric Client Tags 1.2.0+1eb36c0719
+			fabric-command-api-v1: Fabric Command API (v1) 1.2.49+f71b366f19
+			fabric-command-api-v2: Fabric Command API (v2) 2.2.28+6ced4dd919
+			fabric-commands-v0: Fabric Commands (v0) 0.2.66+df3654b319
+			fabric-content-registries-v0: Fabric Content Registries (v0) 8.0.19+b559734419
+			fabric-convention-tags-v1: Fabric Convention Tags 2.1.7+7f945d5b19
+			fabric-convention-tags-v2: Fabric Convention Tags (v2) 2.12.0+c3656daa19
+			fabric-crash-report-info-v1: Fabric Crash Report Info (v1) 0.2.29+0af3f5a719
+			fabric-data-attachment-api-v1: Fabric Data Attachment API (v1) 1.4.7+5b36e0f719
+			fabric-data-generation-api-v1: Fabric Data Generation API (v1) 20.3.0+1eb36c0719
+			fabric-dimensions-v1: Fabric Dimensions API (v1) 4.0.1+65213ef819
+			fabric-entity-events-v1: Fabric Entity Events (v1) 1.8.0+2b27e0a419
+			fabric-events-interaction-v0: Fabric Events Interaction (v0) 0.7.14+ba9dae0619
+			fabric-game-rule-api-v1: Fabric Game Rule API (v1) 1.0.53+6ced4dd919
+			fabric-item-api-v1: Fabric Item API (v1) 11.2.0+3b3cb2e819
+			fabric-item-group-api-v1: Fabric Item Group API (v1) 4.1.7+def88e3a19
+			fabric-key-binding-api-v1: Fabric Key Binding API (v1) 1.0.47+0af3f5a719
+			fabric-keybindings-v0: Fabric Key Bindings (v0) 0.2.45+df3654b319
+			fabric-lifecycle-events-v1: Fabric Lifecycle Events (v1) 2.6.0+0865547519
+			fabric-loot-api-v2: Fabric Loot API (v2) 3.0.15+3f89f5a519
+			fabric-loot-api-v3: Fabric Loot API (v3) 1.0.3+3f89f5a519
+			fabric-message-api-v1: Fabric Message API (v1) 6.0.14+8aaf3aca19
+			fabric-model-loading-api-v1: Fabric Model Loading API (v1) 2.1.0+b4d813fc19
+			fabric-networking-api-v1: Fabric Networking API (v1) 4.3.1+d30f6a7919
+			fabric-object-builder-api-v1: Fabric Object Builder API (v1) 15.2.1+40875a9319
+			fabric-particles-v1: Fabric Particles (v1) 4.0.2+6573ed8c19
+			fabric-recipe-api-v1: Fabric Recipe API (v1) 5.0.16+2475392c19
+			fabric-registry-sync-v0: Fabric Registry Sync (v0) 5.3.2+e3eddc2119
+			fabric-renderer-api-v1: Fabric Renderer API (v1) 3.4.1+b4d813fc19
+			fabric-renderer-indigo: Fabric Renderer - Indigo 1.7.1+c705a49c19
+			fabric-renderer-registries-v1: Fabric Renderer Registries (v1) 3.2.69+df3654b319
+			fabric-rendering-data-attachment-v1: Fabric Rendering Data Attachment (v1) 0.3.49+73761d2e19
+			fabric-rendering-fluids-v1: Fabric Rendering Fluids (v1) 3.1.6+1daea21519
+			fabric-rendering-v0: Fabric Rendering (v0) 1.1.72+df3654b319
+			fabric-rendering-v1: Fabric Rendering (v1) 5.1.0+ab4c25a019
+			fabric-resource-conditions-api-v1: Fabric Resource Conditions API (v1) 4.3.0+8dc279b119
+			fabric-resource-loader-v0: Fabric Resource Loader (v0) 1.3.1+5b5275af19
+			fabric-screen-api-v1: Fabric Screen API (v1) 2.0.26+639b4c0719
+			fabric-screen-handler-api-v1: Fabric Screen Handler API (v1) 1.3.91+b559734419
+			fabric-sound-api-v1: Fabric Sound API (v1) 1.0.23+6573ed8c19
+			fabric-tag-api-v1: Fabric Tag API (v1) 1.3.0+1eb36c0719
+			fabric-transfer-api-v1: Fabric Transfer API (v1) 5.4.4+7b3d111d19
+			fabric-transitive-access-wideners-v1: Fabric Transitive Access Wideners (v1) 6.2.0+45b9699719
+		fabric-language-kotlin: Fabric Language Kotlin 1.13.13+kotlin.2.4.10
+			org_jetbrains_kotlin_kotlin-reflect: kotlin-reflect 2.4.10
+			org_jetbrains_kotlin_kotlin-stdlib: kotlin-stdlib 2.4.10
+			org_jetbrains_kotlin_kotlin-stdlib-jdk7: kotlin-stdlib-jdk7 2.4.10
+			org_jetbrains_kotlin_kotlin-stdlib-jdk8: kotlin-stdlib-jdk8 2.4.10
+			org_jetbrains_kotlinx_atomicfu-jvm: atomicfu-jvm 0.33.0
+			org_jetbrains_kotlinx_kotlinx-coroutines-core-jvm: kotlinx-coroutines-core-jvm 1.11.0
+			org_jetbrains_kotlinx_kotlinx-coroutines-jdk8: kotlinx-coroutines-jdk8 1.11.0
+			org_jetbrains_kotlinx_kotlinx-datetime-jvm: kotlinx-datetime-jvm 0.8.0
+			org_jetbrains_kotlinx_kotlinx-io-bytestring-jvm: kotlinx-io-bytestring-jvm 0.9.1
+			org_jetbrains_kotlinx_kotlinx-io-core-jvm: kotlinx-io-core-jvm 0.9.1
+			org_jetbrains_kotlinx_kotlinx-serialization-cbor-jvm: kotlinx-serialization-cbor-jvm 1.11.0
+			org_jetbrains_kotlinx_kotlinx-serialization-core-jvm: kotlinx-serialization-core-jvm 1.11.0
+			org_jetbrains_kotlinx_kotlinx-serialization-json-jvm: kotlinx-serialization-json-jvm 1.11.0
+		fabricloader: Fabric Loader 0.19.3
+			mixinextras: MixinExtras 0.5.4
+		fastquit: FastQuit 3.0.0+1.20.6
+		ferritecore: FerriteCore 7.0.3
+		ftblibrary: FTB Library 2101.1.33
+		ftbquests: FTB Quests 2101.1.27
+			team_reborn_energy: Energy 4.1.0
+		ftbteams: FTB Teams 2101.1.10
+		fzzy_config: Fzzy Config 0.7.6+1.21
+			blue_endless_jankson: jankson 1.2.3
+			net_peanuuutz_tomlkt_tomlkt-jvm: tomlkt-jvm 0.3.7
+		geckolib: GeckoLib 4 4.9.2
+		immediatelyfast: ImmediatelyFast 1.6.11+1.21.1
+			net_lenni0451_reflect: Reflect 1.6.2
+		incendium: Incendium 5.4.3
+		inventoryprofilesnext: Inventory Profiles Next 2.2.6
+		iris: Iris 1.8.8+mc1.21.1
+			io_github_douira_glsl-transformer: glsl-transformer 2.0.1
+			org_anarres_jcpp: jcpp 1.4.14
+			org_antlr_antlr4-runtime: antlr4-runtime 4.13.1
+		jade: Jade 15.10.5+fabric
+		java: OpenJDK 64-Bit Server VM 21
+		krypton: Krypton 0.2.8
+			com_velocitypowered_velocity-native: velocity-native 3.3.0-SNAPSHOT
+		libipn: libIPN 6.6.3
+		lithium: Lithium 0.15.4+mc1.21.1
+		lithostitched: Lithostitched 1.7.13
+		lootr: Lootr 1.21.1-1.11.37.122
+		map_atlases: Map Atlases 1.21-6.6.3
+		midnightlib: MidnightLib 1.9.3
+		minecraft: Minecraft 1.21.1
+		modernfix: ModernFix 5.25.1+mc1.21.1
+		moonlight: Moonlight Lib 1.21.1-3.1.1
+			codecui: CodecUI 1.21.1-1.1.5
+		moreculling: More Culling 1.0.8
+			conditional-mixin: conditional mixin 0.6.3
+			mixinsquared: MixinSquared 0.2.0
+		mousetweaks: Mouse Tweaks 2.26
+		mr_dungeons_andtaverns: Dungeons and Taverns 1-v4.4.4
+		naturescompass: Nature's Compass 1.21.1-2.6.0-fabric
+		noisium: Noisium 2.3.0+mc1.21-1.21.1
+		nullscape: Nullscape 1.2.14
+		playeranimator: Player Animator 2.0.4+1.21.1
+		presencefootsteps: Presence Footsteps 1.11.2+1.21
+			kirin: Kirin UI 1.20.0+1.21
+		repurposed_structures: Repurposed Structures 7.5.21+1.21.1-fabric
+		rgs: Radical Gyms & Structures - RGS 1.21
+		roughlyenoughitems: Roughly Enough Items 16.0.799
+			error_notifier: Error Notifier 1.0.11
+		simplyswords: Simply Swords 1.63.0-1.21.1
+		simplytooltips: Simply Tooltips 0.1.3
+		sodium: Sodium 0.6.13+mc1.21.1
+		sound_physics_remastered: Sound Physics Remastered 1.21.1-1.5.1
+		spark: spark 1.10.109
+			fabric-permissions-api-v0: fabric-permissions-api 0.3.1
+		structory: Structory 1.3.17
+		structory_towers: Structory: Towers 1.0.17
+		tectonic: Tectonic 3.0.26
+			apollib: Apollib 1.1.4
+				de_marhali_json5-java: json5-java 3.0.0
+		terrablender: TerraBlender 4.1.0.8
+		terralith: Terralith 2.6.2
+		tiered: Reforged 1.0.12
+		tim_core: Tim Core 1.7.3-fabric-1.32.0
+		travelersbackpack: Traveler's Backpack 10.1.36
+		unionlib: UnionLib 12.2
+			com_google_code_findbugs_jsr305: jsr305 3.0.2
+			org_checkerframework_checker-qual: checker-qual 3.21.2
+			org_tomlj_tomlj: tomlj 1.1.1
+		waystones: Waystones 21.1.37
+		wover: WorldWeaver 21.0.13
+			wover-biome: WorldWeaver - Biome API 21.0.13
+			wover-block: WorldWeaver - Block and Item API 21.0.13
+			wover-common: WorldWeaver - Common API 21.0.13
+			wover-core: WorldWeaver - Core API 21.0.13
+			wover-datagen: WorldWeaver - Datagen API 21.0.13
+			wover-events: WorldWeaver - Events API 21.0.13
+			wover-feature: WorldWeaver - Feature API 21.0.13
+			wover-generator: WorldWeaver - World Generator API 21.0.13
+			wover-item: WorldWeaver - Item API 21.0.13
+			wover-math: WorldWeaver - Math API 21.0.13
+			wover-preset: WorldWeaver - World Preset API 21.0.13
+			wover-recipe: WorldWeaver - Recipe API 21.0.13
+			wover-structure: WorldWeaver - Structure API 21.0.13
+			wover-surface: WorldWeaver - Surface API 21.0.13
+			wover-tag: WorldWeaver - Tag API 21.0.13
+			wover-ui: WorldWeaver - UI API 21.0.13
+		wunderlib: WunderLib 21.0.8
+		yungsapi: YUNG's API 1.21.1-Fabric-5.1.6
+			org_javassist_javassist: javassist 3.29.2-GA
+	Loaded Shaderpack: (off)
+	Launched Version: Fabric 1.21.1
+	Launcher name: java-minecraft-launcher
+	Backend library: LWJGL version 3.3.3-snapshot
+	Backend API: Mesa Intel(R) HD Graphics 620 (KBL GT2) GL version 4.6 (Core Profile) Mesa 26.0.3-1ubuntu1, Intel
+	Window size: 2560x1378
+	GFLW Platform: x11
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: id=6, source=SHADER COMPILER, type=OTHER, severity=HIGH, message='0:108(106): warning: `normal' used uninitialized' x 1
+	Is Modded: Definitely; Client brand changed to 'fabric'
+	Universe: 400921fb54442d18
+	Type: Client (map_client.txt)
+	Graphics mode: fancy
+	Render Distance: 10/32 chunks
+	Resource Packs: vanilla, fabric, alternate-current, ambientsounds, apollib, balm (incompatible), bclib, bettercombat, betterfortresses, betterstrongholds, bosses_of_mass_destruction, cardinal-components, cardinal-components-base, cardinal-components-block, cardinal-components-chunk, cardinal-components-entity, cardinal-components-item, cardinal-components-level, cardinal-components-scoreboard, cardinal-components-world, cloth-config, cobbled_counter, cobbledex, cobblemon, cobblemon_quests-reloaded, cobblemonbreakouts, cobblemonextrastructures, cobblemontrainerbattle, cobbreeding, comforts (incompatible), conditional-mixin, continuity, creativecore, ctov, dynamic_fps, effective, emi, entityculling, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-view-api-v2, fabric-blockrenderlayer-v1, fabric-client-tags-api-v1, fabric-command-api-v1, fabric-command-api-v2, fabric-commands-v0, fabric-content-registries-v0, fabric-convention-tags-v1, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-item-api-v1, fabric-item-group-api-v1, fabric-key-binding-api-v1, fabric-keybindings-v0, fabric-language-kotlin, fabric-lifecycle-events-v1, fabric-loot-api-v2, fabric-loot-api-v3, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-renderer-registries-v1, fabric-rendering-data-attachment-v1, fabric-rendering-fluids-v1, fabric-rendering-v0, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-screen-api-v1, fabric-screen-handler-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, fastquit, ftblibrary, ftbquests, ftbteams, fzzy_config, immediatelyfast, inventoryprofilesnext, iris, jade (incompatible), krypton, libipn, lithium, lootr, map_atlases, midnightlib, modernfix (incompatible), moonlight, moreculling, mr_dungeons_andtaverns (incompatible), naturescompass, noisium, playeranimator, presencefootsteps, repurposed_structures, roughlyenoughitems, satin, simplyswords, simplytooltips, sodium, sound_physics_remastered, spark (incompatible), spectrelib (incompatible), team_reborn_energy, tectonic, terrablender (incompatible), terralith (incompatible), tiered (incompatible), tim_core, travelersbackpack, trender, unionlib (incompatible), veil (incompatible), waystones (incompatible), wover, wover-block, wover-core, wover-events, wover-generator, wover-preset, wover-surface, wover-ui, wunderlib, cobbreeding:pasturefix, moonlight:merged_pack
+	Current Language: en_us
+	Locale: vi_VN
+	System encoding: UTF-8
+	File encoding: UTF-8
+	CPU: 4x Intel(R) Core(TM) i7-7600U CPU @ 2.80GHz
